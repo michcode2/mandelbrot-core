@@ -1,6 +1,5 @@
 use std::sync::mpsc;
 use threadpool::ThreadPool;
-//use std::cmp::{min, max};
 use rug::{Float, ops::CompleteRound, Assign};
 use std::convert::TryFrom;
 use num_cpus;
@@ -422,6 +421,7 @@ pub fn cache_calculate(params: &Parameters, precision: u32) -> Storage{
 		storage_struct.insert(message.real, message.imag, message.value);
 
 	}
+	println!("github says hello");
 	storage_struct
 }
 
