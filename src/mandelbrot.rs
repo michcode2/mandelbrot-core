@@ -155,6 +155,7 @@ pub fn filter2(value: f64, lerped: f64) -> ReturnColor {
 	}
 }
 
+#[derive(Clone)]
 pub struct Cartographer {
 // struct to store stuff to make colormaps easier. This belongs in a vec
 	color: ReturnColor,
@@ -177,6 +178,8 @@ pub fn cartographer(color: ReturnColor, stop: f64) -> Cartographer {
 }
 
 pub fn make_colormap(colors: &Vec<Cartographer>) -> Vec<ReturnColor> {
+    let mut colors: Vec<Cartographer> = colors.clone().to_vec();
+    colors.sort_by_key(|k| k.stop as usize);
 	let mut finals: Vec<ReturnColor> = vec![];
 
 	for i in 0..colors.len()-1 {
