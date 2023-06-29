@@ -1,6 +1,0 @@
-$ mkdir -p "/home/natalie/Documents/rust/mandelbrot-core/target/debug/build/az-d5ff42b019226af6/out/try_track_caller"
-$ cd "/home/natalie/Documents/rust/mandelbrot-core/target/debug/build/az-d5ff42b019226af6/out/try_track_caller"
-$ printf '%s' "// try_tra"... > "/home/natalie/Documents/rust/mandelbrot-core/target/debug/build/az-d5ff42b019226af6/out/try_track_caller/try_track_caller.rs"
-$ cd "/home/natalie/Documents/rust/mandelbrot-core/target/debug/build/az-d5ff42b019226af6/out/try_track_caller" && "rustc" "try_track_caller.rs" "--emit=dep-info,metadata" >& /dev/null
-cargo:rustc-cfg=track_caller
-$ rm -r "/home/natalie/Documents/rust/mandelbrot-core/target/debug/build/az-d5ff42b019226af6/out/try_track_caller"
