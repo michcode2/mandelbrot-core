@@ -3,29 +3,18 @@ use threadpool::ThreadPool;
 use rug::{Float, ops::CompleteRound, Assign};
 use std::convert::TryFrom;
 use num_cpus;
-use std::collections::HashMap;
-use std::mem;
-
-#[cfg(feature = "all")]
-use {
-	std::net::{TcpStream, TcpListener},
-	std::io::prelude::*,
-};
 
 #[derive(Debug)]
 pub struct Parameters{
 	/*
 	* struct that takes stuff from the UI and gives it to the renderer. little bit janky
 	*/
+
     pub zoom: Float,
-
     pub low_x: Float,
-
     pub low_y: Float,
-
     pub radius_x: Float,
     pub radius_y: Float,
-
     pub quality: usize,
 	pub bound: f64,
 }
@@ -69,7 +58,6 @@ impl Parameters {
 
 fn bounded(real: Float, imag: Float, iterations: usize, bound: f64, precision: u32) -> usize{
 	/*
-	* older variant of the other one. It checks if a point goes above bound in iterations tests
 	*/
     let mut i: usize = 0;
 
@@ -188,7 +176,7 @@ pub fn cartographer(color: ReturnColor, stop: f64) -> Cartographer {
 	}
 }
 
-pub fn make_colormap(colors: Vec<Cartographer>) -> Vec<ReturnColor> {
+pub fn make_colormap(colors: &Vec<Cartographer>) -> Vec<ReturnColor> {
 	let mut finals: Vec<ReturnColor> = vec![];
 
 	for i in 0..colors.len()-1 {
@@ -298,39 +286,12 @@ pub fn initcolormap() -> Vec<ReturnColor> {
 	
 	let colors = vec![black, purple, pink, blue, yellow, green, red, lightblue, lightpurple, lightgreen, white];
 	
-	let mut finals: Vec<ReturnColor> = vec![];
+    let mut carts = vec![];
 
-	for i in 0..colors.len()-1{
-		let r_lerp = FourValues{
-			min_in: stops[i] as f64,
-			max_in: stops[i+1] as f64,	
-			min_out: colors[i].r as f64, 
-			max_out: colors[i+1].r as f64, 
-		};
-
-		let g_lerp = FourValues{
-			min_out: colors[i].g as f64, 
-			max_out: colors[i+1].g as f64, 
-			..r_lerp
-		};
-
-		let b_lerp = FourValues{
-			min_out: colors[i].b as f64, 
-			max_out: colors[i+1].b as f64, 
-			..r_lerp
-		};
-		
-		for j in stops[i] as usize..stops[i+1] as usize{
-			let j = j as f64;
-			finals.push(ReturnColor{
-				r: r_lerp.lerp(&j) as u8,
-				g: g_lerp.lerp(&j) as u8,
-				b: b_lerp.lerp(&j) as u8,
-				});
-		}
-
-	}
-	finals
+    for i in 0..colors.len() {
+        carts.push(cartographer(colors[i], stops[i]));
+    }
+    make_colormap(&carts)
 }
 
 #[derive(Debug)]

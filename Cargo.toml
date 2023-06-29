@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 description = "a library that I use a bunch"
-documentation = "https://michcode.gay/mandelbrot"
+documentation = "https://michcode.space/mandelbrot"
 
 [dependencies]
 num = "0.4.0"
@@ -24,6 +24,3 @@ gmp-mpfr-sys = "1.5.0"
 name = "mandelbrot"
 path = "src/mandelbrot.rs"
 
-[[bin]]
-name = "video"
-path = "src/main.rs"
