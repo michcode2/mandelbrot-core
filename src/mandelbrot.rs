@@ -3,7 +3,9 @@ use threadpool::ThreadPool;
 use rug::{Float, ops::CompleteRound, Assign};
 use std::convert::TryFrom;
 use num_cpus;
-
+use serde::ser::{Serializer, SerializeStruct};
+use serde::{Serialize, Deserialize};
+    
 #[derive(Debug)]
 pub struct Parameters{
 	/*
@@ -18,6 +20,25 @@ pub struct Parameters{
     pub quality: usize,
 	pub bound: f64,
 }
+
+impl Serialize for Parameters {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut state = serializer.serialize_struct("Parameters", 7)?;
+        state.serialize_field("zoom", &format!("{}", self.zoom))?;
+        state.serialize_field("low_x", &format!("{}", self.low_x))?;
+        state.serialize_field("low_y", &format!("{}", self.low_y))?;
+        state.serialize_field("radius_x", &format!("{}", self.radius_x))?;
+        state.serialize_field("radius_y", &format!("{}", self.radius_y))?;
+        state.serialize_field("quality", &self.quality)?;
+        state.serialize_field("bound", &self.bound)?;
+        state.end()
+    }
+}
+
+
 
 pub fn test_abs() -> f64 {
 	let a = Float::with_val(53, 3.0);
@@ -95,9 +116,7 @@ fn bounded(real: Float, imag: Float, iterations: usize, bound: f64, precision: u
     }
 }
 
-#[derive(Debug)]
-#[derive(Copy)]
-#[derive(Clone)]
+#[derive(Debug, Copy, Clone, Serialize, Deserialize)]
 pub struct ReturnColor {
 	/*
 	* might be worth replacing this with something off the shelf
@@ -155,7 +174,7 @@ pub fn filter2(value: f64, lerped: f64) -> ReturnColor {
 	}
 }
 
-#[derive(Clone)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct Cartographer {
 // struct to store stuff to make colormaps easier. This belongs in a vec
 	color: ReturnColor,
@@ -430,3 +449,4 @@ fn to_usize(input: &Float) -> usize {
 fn abs(real: &Float, imag: &Float) -> f64{
 	real.to_f64().powf(2.0) + imag.to_f64().powf(2.0) 
 }
+
