@@ -169,7 +169,7 @@ pub fn filter2(value: f64, lerped: f64) -> ReturnColor {
 
 pub struct Cartographer {
 // struct to store stuff to make colormaps easier. This belongs in a vec
-	color: &ReturnColor,
+	color: ReturnColor,
 	stop: f64,
 }
 
