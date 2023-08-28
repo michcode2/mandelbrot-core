@@ -20,6 +20,3 @@ gmp-mpfr-sys = "1.5.0"
 name = "mandelbrot"
 path = "src/mandelbrot.rs"
 
-[[bin]]
-name = "video"
-path = "src/main.rs"

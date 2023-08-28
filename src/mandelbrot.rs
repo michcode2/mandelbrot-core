@@ -3,8 +3,6 @@ use threadpool::ThreadPool;
 use rug::{Float, ops::CompleteRound, Assign};
 use std::convert::TryFrom;
 use num_cpus;
-use std::collections::HashMap;
-use std::mem;
 
 #[cfg(feature = "all")]
 use {
@@ -181,7 +179,7 @@ pub fn return_color(r: u8, g: u8, b: u8) -> ReturnColor {
 	}
 }
 
-pub fn cartographer(color: &ReturnColor, stop: f64) -> Cartographer {
+pub fn cartographer(color: ReturnColor, stop: f64) -> Cartographer {
 	Cartographer {
 		color,
 		stop,

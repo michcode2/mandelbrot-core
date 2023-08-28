@@ -63,19 +63,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
 
 [[package]]
-name = "complex"
-version = "0.1.0"
-dependencies = [
- "gmp-mpfr-sys",
- "image",
- "itertools-num",
- "num",
- "num_cpus",
- "rug",
- "threadpool",
-]
-
-[[package]]
 name = "crc32fast"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -325,6 +312,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "abb12e687cfb44aa40f41fc3978ef76448f9b6038cad6aef4259d3c095a2382e"
 dependencies = [
  "cfg-if",
+]
+
+[[package]]
+name = "mandelbrot_core"
+version = "0.1.0"
+dependencies = [
+ "gmp-mpfr-sys",
+ "image",
+ "itertools-num",
+ "num",
+ "num_cpus",
+ "rug",
+ "threadpool",
 ]
 
 [[package]]
