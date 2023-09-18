@@ -186,7 +186,7 @@ pub fn cartographer(color: ReturnColor, stop: f64) -> Cartographer {
 	}
 }
 
-pub fn make_colormap(colors: Vec<Cartographer>) -> Vec<ReturnColor> {
+pub fn make_colormap(colors: &Vec<Cartographer>) -> Vec<ReturnColor> {
 	let mut finals: Vec<ReturnColor> = vec![];
 
 	for i in 0..colors.len()-1 {
