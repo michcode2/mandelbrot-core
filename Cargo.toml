@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 description = "a library that I use a bunch"
-documentation = "https://michcode.gay/mandelbrot"
+documentation = "https://michcode.space/mandelbrot"
 
 [dependencies]
 num = "0.4.0"
@@ -14,9 +14,14 @@ image = "0.24.5"
 rug = "1.19.0"
 num_cpus = "1.15.0"
 
- # gmp-mpfr-sys = "1.6"
+
+
+#[target.'cfg(target_os = "macos")'.dependencies]
+gmp-mpfr-sys = { version = "1.5.0", features=["use-system-libs"]}
+#
+#[target.'cfg(not(target_os = "macos"))'.dependencies]
+#gmp-mpfr-sys = "1.5.0"
 
 [lib]
 name = "mandelbrot"
 path = "src/mandelbrot.rs"
-
