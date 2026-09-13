@@ -1,6 +1,6 @@
 [package]
 name = "mandelbrot_core"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 description = "a library that I use a bunch"
@@ -16,11 +16,11 @@ num_cpus = "1.15.0"
 
 
 
-#[target.'cfg(target_os = "macos")'.dependencies]
+[target.'cfg(not(target_os = "macos"))'.dependencies]
 gmp-mpfr-sys = { version = "1.5.0", features=["use-system-libs"]}
-#
-#[target.'cfg(not(target_os = "macos"))'.dependencies]
-#gmp-mpfr-sys = "1.5.0"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+gmp-mpfr-sys = "1.5.0"
 
 [lib]
 name = "mandelbrot"

@@ -211,7 +211,8 @@ pub fn initcolormap() -> Vec<ReturnColor> {
     	* makes a colormap with a bunch of lerping. Try to avoid running too much.
     	*/
     let stops = vec![
-        0.0, 100.0, 125.0, 250.0, 400.0, 500.0, 650.0, 800.0, 950.0, 1150.0, 1400.0,
+        0.0, 100.0, 125.0, 250.0, 400.0, 500.0, 650.0, 800.0, 950.0, 1150.0, 1400.0, 1700.0,
+        2000.0, 2300.0, 2600.0, 2900.0,
     ];
 
     let black = ReturnColor { r: 0, g: 0, b: 0 };
@@ -279,6 +280,11 @@ pub fn initcolormap() -> Vec<ReturnColor> {
         lightpurple,
         lightgreen,
         white,
+        purple,
+        pink,
+        blue,
+        yellow,
+        green,
     ];
 
     let mut finals: Vec<ReturnColor> = vec![];
